@@ -1,9 +1,11 @@
 import express, { Router } from "express";
+import cors from "cors";
 
 import dotenv from "dotenv";
 // import { client, dbConnection } from "./db.js";
 // import { getAllStudents } from "./contollers/students.js";
 import { studentRouter } from "./router/routes.js";
+import { userRouter } from "./userRouters/userRouter.js";
 
 dotenv.config();
 let port = process.env.port;
@@ -16,6 +18,8 @@ app.listen(port, ()=>{
 app.use(express.json());
 
 app.use("/", studentRouter);
+app.use("/", userRouter);
+app.use(cors());
 
 app.get("/", (req, res)=>{
     res.send("working good");
